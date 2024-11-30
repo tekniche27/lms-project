@@ -48,7 +48,7 @@ export const columns: ColumnDef<course>[] = [
         const price = parseFloat(row.getValue("price") || "0")
         const formattedPrice = Intl.NumberFormat("en-US",{
             style:"currency",
-            currency:"USD"
+            currency:"PHP"
         }).format(price)
 
         return(<div className="">{formattedPrice}</div> )

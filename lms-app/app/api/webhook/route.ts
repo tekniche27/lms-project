@@ -10,6 +10,9 @@ export async function POST(req:Request) {
     const body = await req.text()
     const signature = headers().get("Stripe-Signature") as string
 
+    //console.log(body)
+    //console.log(signature)
+
     let event: Stripe.Event
 
     try {
@@ -18,8 +21,10 @@ export async function POST(req:Request) {
             signature,
             process.env.STRIPE_WEBHOOK_SECRET!
         )
+        //console.log(event);
         
     } catch (error: any) {
+        //console.log(error);
         return new NextResponse(`Webhook Error: ${error.message}`, { status: 400})
     }
     
@@ -27,11 +32,14 @@ export async function POST(req:Request) {
     const userId = session?.metadata?.userId
     const courseId = session?.metadata?.courseId
 
+    //console.log(event.type);
+
     if(event.type === "checkout.session.completed"){
         if(!userId || !courseId){
             return new NextResponse("Webhook Error: Missing metadata", {status: 400})
         }
 
+        //console.log(event.type);
 
         await axios.post(`${process.env.BACK_END_URL}/api/courses/${courseId}/user/${userId}/purchased`)
 

@@ -12,7 +12,7 @@ export async function POST(
     const user = await currentUser();
 
     if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
-      return new NextResponse("Unauthorized access denied at chekout", {
+      return new NextResponse("Unauthorized access denied at checkout", {
         status: 401,
       });
     }
@@ -38,10 +38,12 @@ export async function POST(
             name: course.title,
             description: course.description!,
           },
-          unit_amount: Math.round(course.price! * 100),
+          unit_amount: Math.round((course.price! / 57) * 100),
         },
       },
     ];
+
+    //console.log(line_items);
 
     let stripeCustomer: { stripeCustomerId: string } = (
       await axios.get(`${process.env.BACK_END_URL}/api/stripeCustomers/${user.id}`)
@@ -72,6 +74,8 @@ export async function POST(
         userId: user.id,
       },
     });
+
+   //console.log(session);
 
     return NextResponse.json({ url: session.url });
   } catch (error) {

@@ -19,9 +19,11 @@ export const CourseEnrollButton = ({courseId,price}: courseEnrollButtonProps) =>
     const onClick = async () => {
         try {
             setIsLoading(true)
-            const reponse = await axios.post(`/api/courses/${courseId}/checkout`)
+            const response = await axios.post(`/api/courses/${courseId}/checkout`)
+
+            //console.log(response);
             
-            window.location.assign(reponse.data.url)
+            window.location.assign(response.data.url)
             
         } catch (error: any) {
             console.log("course enroll btn", error.message)
