@@ -2,7 +2,7 @@ import { stripe } from "@/lib/stripe";
 import { currentUser } from "@clerk/nextjs";
 import axios from "axios";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+//import Stripe from "stripe";
 
 export async function POST(
   req: Request,
@@ -11,7 +11,12 @@ export async function POST(
   try {
     const user = await currentUser();
 
-    if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
+    //console.log("user:", user);
+    //console.log(!user || !user.id || !user.emailAddresses?.[0]?.emailAddress);
+
+    if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) 
+      {
+      //console.log("unauthorized access denied. :(")
       return new NextResponse("Unauthorized access denied at checkout", {
         status: 401,
       });
@@ -29,7 +34,9 @@ export async function POST(
       return new NextResponse("Already purchased", { status: 400 });
     }
 
-    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+
+
+/*     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
         quantity: 1,
         price_data: {
@@ -41,7 +48,7 @@ export async function POST(
           unit_amount: Math.round((course.price! / 57) * 100),
         },
       },
-    ];
+    ]; */
 
     //console.log(line_items);
 
@@ -63,7 +70,7 @@ export async function POST(
       ).data;
     }
 
-    const session = await stripe.checkout.sessions.create({
+/*     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomer.stripeCustomerId,
       line_items,
       mode: "payment",
@@ -73,11 +80,16 @@ export async function POST(
         courseId: course._id,
         userId: user.id,
       },
-    });
+    }); */
 
-   //console.log(session);
+   //console.log("session: ",session);
 
-    return NextResponse.json({ url: session.url });
+   await axios.post(`${process.env.BACK_END_URL}/api/courses/${params.courseId}/user/${user.id}/purchased`)
+
+    //return NextResponse.json({ url: session.url });
+
+    return NextResponse.json({ success: "successful" });
+
   } catch (error) {
     console.log("api courses courseId checkout", error);
     return new NextResponse("internal server error courseId checkout", {

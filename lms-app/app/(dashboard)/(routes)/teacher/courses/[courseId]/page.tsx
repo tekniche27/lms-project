@@ -2,7 +2,9 @@
 
 import { IconBadge } from "@/components/icon-bage";
 import { auth } from "@clerk/nextjs";
-import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
+// import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
+
+import { PhilippinePeso, File, LayoutDashboard, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import TitleForm from "./_components/title-form";
@@ -55,7 +57,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     course.title,
     course.description,
     course.imageUrl,
-    course.price,
+    // course.price,
     course.categoryId,
     publishedChapters
     // courseChapters.some((chapter) => chapter.isPublished)
@@ -118,7 +120,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={CircleDollarSign} />
+              <IconBadge icon={PhilippinePeso} />
               <h2 className="text-xl font-medium">Price</h2>
             </div>
               <PriceForm intialData={course} courseId={course._id} />

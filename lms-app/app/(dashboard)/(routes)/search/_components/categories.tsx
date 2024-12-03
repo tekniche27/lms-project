@@ -1,6 +1,8 @@
 "use client"
 
-import {FcEngineering,FcFilmReel,FcMultipleDevices,FcMusic,FcOldTimeCamera,FcSalesPerformance,FcSportsMode} from "react-icons/fc"
+import {FcEngineering,FcFilmReel,FcMultipleDevices,FcMusic,
+       FcOldTimeCamera,FcSalesPerformance,FcSportsMode,
+       FcLandscape, FcBiomass, FcScatterPlot, FcPositiveDynamic } from "react-icons/fc"
 import { IconType } from "react-icons"
 import { CategoryItem } from "./category-item"
 
@@ -17,7 +19,11 @@ const iconMap: Record<{name: string}["name"], IconType> = {
     "Film": FcFilmReel,
     "Engineering": FcEngineering,
     "Artificial Intelligence": FcEngineering,
-    "Cyber Security": FcSalesPerformance
+    "Cyber Security": FcSalesPerformance,
+    "Pest Control": FcLandscape,
+    "Crop Protection": FcScatterPlot,
+    "Soil Management": FcBiomass,
+    "Weather Forecasting": FcPositiveDynamic,
 }
 
 export const Categories = ({ items } : categoriesProps) => {

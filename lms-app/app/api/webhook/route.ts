@@ -7,6 +7,8 @@ import axios from "axios";
 
 export async function POST(req:Request) {
 
+    //console.log("request:", req);
+
     const body = await req.text()
     const signature = headers().get("Stripe-Signature") as string
 
@@ -21,10 +23,11 @@ export async function POST(req:Request) {
             signature,
             process.env.STRIPE_WEBHOOK_SECRET!
         )
-        //console.log(event);
+    
+        //console.log("stripe_event", event);
         
     } catch (error: any) {
-        //console.log(error);
+        //console.log("stripe payment error: ", error);
         return new NextResponse(`Webhook Error: ${error.message}`, { status: 400})
     }
     
@@ -32,7 +35,8 @@ export async function POST(req:Request) {
     const userId = session?.metadata?.userId
     const courseId = session?.metadata?.courseId
 
-    //console.log(event.type);
+    //console.log("event_type: ", event.type);
+    //console.log("api post request: ", `${process.env.BACK_END_URL}/api/courses/${courseId}/user/${userId}/purchased`);
 
     if(event.type === "checkout.session.completed"){
         if(!userId || !courseId){
@@ -40,6 +44,8 @@ export async function POST(req:Request) {
         }
 
         //console.log(event.type);
+
+        //console.log("api post request: ", `${process.env.BACK_END_URL}/api/courses/${courseId}/user/${userId}/purchased`)
 
         await axios.post(`${process.env.BACK_END_URL}/api/courses/${courseId}/user/${userId}/purchased`)
 
