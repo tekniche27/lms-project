@@ -6,7 +6,7 @@ export const Sidebar = () => {
         <div className="h-full shadow-sm border-r flex flex-col overflow-y-auto bg-white ">
             <div className="p-6">
                 {/* <Logo /> */}
-                SARAi e-Learning
+                SARAi E-Learning
             </div>
             <div className="flex flex-col w-full">
                 <SidebarRoutes />

@@ -89,7 +89,7 @@ const TitleForm = ({ intialData, courseId }: titleFormProps) => {
                     <FormControl>
                       <Input
                         disabled={isSubmitting}
-                        placeholder="e.g. Next JS full tutorial"
+                        placeholder="e.g. Pest Control full tutorial"
                         {...field}
                       />
                     </FormControl>

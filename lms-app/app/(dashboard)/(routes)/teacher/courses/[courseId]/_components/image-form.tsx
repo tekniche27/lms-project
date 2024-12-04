@@ -82,7 +82,7 @@ const ImageForm = ({ intialData, courseId }: imageFormProps) => {
             }}
             />
             <div className="text-xs mt-4 text-muted-foreground">
-                16:9 aspect ration recommended
+                16:9 aspect ratio recommended
             </div>
         </div>
       )}

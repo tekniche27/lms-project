@@ -2,9 +2,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { FaGraduationCap } from "react-icons/fa";
-import Link from "next/link";
+import Link from "next/link"
 
 export default function LandingPage() {
+
 
   return (
     <div className="bg-gray-50 text-gray-900">
@@ -15,15 +16,15 @@ export default function LandingPage() {
           <div className="flex items-center space-x-4">
             <span className="flex items-center text-gray-800 font-semibold text-lg space-x-2">
               <FaGraduationCap className="h-8 w-8 mr-4" />
-              <span>SARAi LMS</span>
+              <span>SARAi E-Learning</span>
             </span>
           </div>
 
           <div className="flex items-center space-x-6">
-          <Link href="/sign-in">
-            <Button variant="default" size='lg'>
-              Log in
-            </Button>
+          <Link href="/">
+          <Button>
+          {"Learn Now"}
+          </Button>
           </Link>
           </div>
         </div>
@@ -40,9 +41,11 @@ export default function LandingPage() {
               Skills for your present and your future. Get Started with Us.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
+              <Link href="/">
               <Button variant="default" size="lg">
                 Get Started
               </Button>
+              </Link>
             </div>
           </div>
 
@@ -115,7 +118,7 @@ export default function LandingPage() {
  
       <section id="goals-us" className="py-16 px-8 bg-gray-100">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-          Goals of SARAi LMS
+          Goals of SARAi E-Learning
         </h2>
         <div className="max-w-4xl mx-auto grid gap-8">
           {[
@@ -144,7 +147,7 @@ export default function LandingPage() {
       <footer className="py-8 px-8 bg-gray-900 text-gray-400">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between">
           <div>
-            <h3 className="text-white text-xl font-bold">SARAi LMS</h3>
+            <h3 className="text-white text-xl font-bold">SARAi E-Learning</h3>
             <p>Learning that gets you</p>
           </div>
           <div>
@@ -169,7 +172,7 @@ export default function LandingPage() {
           </div>
         </div>
         <p className="text-center mt-8">
-          &copy; 2024 SARAi LMS. All rights reserved.
+          &copy; 2024 SARAi E-Learning. All rights reserved.
         </p>
       </footer>
     </div>
